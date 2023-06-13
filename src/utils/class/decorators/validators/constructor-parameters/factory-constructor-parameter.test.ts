@@ -1,4 +1,4 @@
-import type { ClassConstructorSingleParameter, ClassConstructorSingleParameterDecorator } from "../../../../../types/index.js"
+import type { ClassConstructorSingleParameter } from "../../../../../types/index.js"
 import { createClassConstructorSingleParameterDecoratorParameterValidator } from "./factory-constructor-parameter.js"
 import { type ClassConstructorSingleParameterValidatorFunction } from "./types.js"
 
@@ -37,7 +37,7 @@ describe('createClassConstructorSingleParameterDecoratorParameterValidator', () 
     })
     describe('Returned value', () => {
         let validatorFunction: ClassConstructorSingleParameterValidatorFunction<unknown>;
-        let Decorator: ClassConstructorSingleParameterDecorator<unknown, unknown>;
+        let Decorator: any;
         beforeEach(() => {
             validatorFunction = jest.fn(function (parameter:unknown) {
                 if (parameter === 'undefined') {

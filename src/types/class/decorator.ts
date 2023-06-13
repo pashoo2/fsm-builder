@@ -6,7 +6,7 @@
  * @template P - the type the parameters.
  */
 // eslint-disable-next-line @typescript-eslint/ban-types
-export type ClassConstructorSingleParameterDecorator = (constructor: Function, context?: {
+export type ClassConstructorSingleParameterDecorator = <T>(constructor: T, context?: {
     kind: "class"
     name: string | undefined
     addInitializer(initializer: () => void): void

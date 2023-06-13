@@ -1,3 +1,4 @@
+import { strict as assert } from "assert";
 import type { FSMState, StateInputValue, StateOutputValue } from '../../../../../fsm-abstract/types/index.js';
 import type { FSMStateTransitionFunction } from "../../../types/index.js";
 import type { FSMStatesTransitionGraphAdjacencyListRepresentation, FSMStatesTransitionGraphRepresentationEdges } from './types.js';
@@ -15,6 +16,10 @@ import type { FSMStatesTransitionGraphAdjacencyListRepresentation, FSMStatesTran
 export function createFSMStateTransitionFunctionByStateTransitionsGraph<I extends StateInputValue, O extends StateOutputValue>(
     graphAdjacencyList: FSMStatesTransitionGraphAdjacencyListRepresentation<I, O>
 ): FSMStateTransitionFunction<I, O> {
+    assert(graphAdjacencyList instanceof global.Map, '"graphAdjacencyList" parameter is expected to be an instance of Map')
+    assert(graphAdjacencyList.size > 0, 'The value "graphAdjacencyList" should have at least one item')
+    assert([...graphAdjacencyList.values()].every(v => v instanceof Map && v.size > 0), 'Each value of the "graphAdjacencyList" Map should be a non-empty Map')
+
     // TODO: using dfs/bfs traverse the graph and check that every possible state is reachable
     // and all the inputs are exhausted.
     
