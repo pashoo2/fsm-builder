@@ -19,19 +19,23 @@
     "rimraf": "~5.0",
     "ts-api-utils": "~0.0.44",
     "ts-jest": "~29.1",
-    "typescript": "~5.0"
+    "typescript": "~5.0",
+    "jsdoc": "^4.0.2"
   },
   "scripts": {
     "start": "node build/src/main.js",
     "clean": "rimraf coverage build tmp",
     "prebuild": "npm run lint",
-    "build": "tsc -p tsconfig.json",
-    "build:watch": "tsc -w -p tsconfig.json",
-    "build:release": "npm run clean && tsc -p tsconfig.release.json",
+    "build:tsc:config": "tsc -p",
+    "build": "npm run build:tsc:config -- tsconfig.json",
+    "build:watch": "npm run build -- -w",
+    "build:release": "npm run clean && npm run build:tsc:config tsconfig.release.json",
     "lint": "eslint . --ext .ts --ext .mts",
-    "test": "jest --coverage",
+    "test": "jest",
+    "test:coverage": "npm run test -- --coverage",
     "prettier": "prettier --config .prettierrc --write .",
-    "test:watch": "jest --watch"
+    "test:watch": "npm run test -- --watch",
+    "documentation:generate": "jsdoc"
   },
   "author": "Jakub Synowiec <jsynowiec@users.noreply.github.com>",
   "license": "Apache-2.0",

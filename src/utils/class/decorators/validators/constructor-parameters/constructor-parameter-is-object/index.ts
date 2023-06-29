@@ -1,0 +1,1 @@
+export * from './constructor-parameter-is-object.js'
